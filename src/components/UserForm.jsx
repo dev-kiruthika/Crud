@@ -64,16 +64,24 @@ const UserForm = ({ onSubmit, userId, initialValues = {} }) => {
       component="form"
       onSubmit={formik.handleSubmit}
       sx={{
-        maxWidth: 800,
+        width: "100%",
+        maxWidth: "900px",
         mx: "auto",
         my: 6,
-        p: 4,
+        px: isMobile ? 2 : 4,
+        py: 4,
         bgcolor: "#fff",
         borderRadius: 3,
         boxShadow: 3,
+        boxSizing: "border-box", // Ensure padding is included in the width
       }}
     >
-      <Typography variant="h4" align="center" fontWeight={600} gutterBottom>
+      <Typography
+        variant={isMobile ? "h5" : "h4"} // Adjust heading size for mobile
+        align="center"
+        fontWeight={600}
+        gutterBottom
+      >
         {userId ? "Edit User" : "Create User"}
       </Typography>
 
@@ -81,7 +89,7 @@ const UserForm = ({ onSubmit, userId, initialValues = {} }) => {
         sx={{
           display: "grid",
           gap: 3,
-          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+          gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", // Single column on mobile, two columns on desktop
         }}
       >
         {userSchema.map(({ name, label, type }) => (

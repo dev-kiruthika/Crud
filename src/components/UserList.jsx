@@ -44,13 +44,32 @@ const UserList = ({ users, onEdit, onDelete, loading }) => {
     return <Typography align="center">No users found.</Typography>;
   }
 
-  const tableHeaderStyle = { fontWeight: "bold", borderBottom: "2px solid #444" };
+  const tableHeaderStyle = {
+    fontWeight: "bold",
+    borderBottom: "2px solid #444",
+  };
   const cellStyle = { borderBottom: "1px solid #444" };
-  const ellipsisStyle = { ...cellStyle, maxWidth: "150px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" };
+  const ellipsisStyle = {
+    borderBottom: "1px solid #444",
+    maxWidth: { xs: "120px", sm: "150px", md: "200px" },
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  };
+  
 
   return (
     <>
-      <TableContainer sx={{ border: "1px solid #333", borderRadius: "4px" }}>
+      <TableContainer
+        sx={{
+          border: "1px solid #333",
+          borderRadius: "4px",
+          overflowX: "auto",
+          width: "100%",
+          maxWidth: "100%",
+          mx: "auto",
+        }}
+      >
         <Table>
           <TableHead>
             <TableRow>
@@ -69,10 +88,16 @@ const UserList = ({ users, onEdit, onDelete, loading }) => {
                 <TableCell sx={ellipsisStyle}>{user.email}</TableCell>
                 <TableCell sx={ellipsisStyle}>{user.phone}</TableCell>
                 <TableCell sx={cellStyle}>
-                  <IconButton onClick={() => onEdit(user)} sx={{ color: "primary.main" }}>
+                  <IconButton
+                    onClick={() => onEdit(user)}
+                    sx={{ color: "primary.main" }}
+                  >
                     <Edit />
                   </IconButton>
-                  <IconButton onClick={() => confirmDelete(user.id)} sx={{ color: "error.main" }}>
+                  <IconButton
+                    onClick={() => confirmDelete(user.id)}
+                    sx={{ color: "error.main" }}
+                  >
                     <Delete />
                   </IconButton>
                 </TableCell>

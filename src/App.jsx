@@ -31,35 +31,49 @@ const App = () => {
   };
 
   return (
-    <Box>
-      <ToastContainer />
+    <Box
+  sx={{
+    px: { xs: 2, sm: 3, md: 6 },
+    py: { xs: 2, sm: 3 },
+    maxWidth: "xl",
+    mx: "auto",
+  }}
+>
+  <ToastContainer />
 
-      {view === "list" ? (
-        <Box sx={{ padding: 2 }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => switchToForm()}
-            sx={{ marginBottom: 2 }}
-          >
-            Create User
-          </Button>
+  {view === "list" ? (
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          mb: 2,
+        }}
+      >
+        <Button
+          variant="contained"
+          onClick={() => switchToForm()}
+        >
+          Create User
+        </Button>
+      </Box>
 
-          <UserList
-            users={users}
-            onEdit={switchToForm}
-            onDelete={handleDelete}
-            loading={loading}
-          />
-        </Box>
-      ) : (
-        <UserForm
-          onSubmit={handleFormSubmit}
-          userId={editingUser?.id}
-          initialValues={editingUser || {}}
-        />
-      )}
-    </Box>
+      <UserList
+        users={users}
+        onEdit={switchToForm}
+        onDelete={handleDelete}
+        loading={loading}
+      />
+    </>
+  ) : (
+    <UserForm
+      onSubmit={handleFormSubmit}
+      userId={editingUser?.id}
+      initialValues={editingUser || {}}
+    />
+  )}
+</Box>
+
   );
 };
 
