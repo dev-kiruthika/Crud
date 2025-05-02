@@ -27,22 +27,23 @@ const UserForm = ({ onSubmit, userId, initialValues = {} }) => {
       Object.fromEntries(
         userSchema.map(({ name, label, required, type }) => {
           let fieldValidation = Yup.string();
-
-          if (required) {
-            fieldValidation = fieldValidation.required(`${label} is required`);
-          }
-
-          if (type === "email") {
-            fieldValidation = fieldValidation.email("Invalid email address");
-          }
-
           if (name === "phone") {
             fieldValidation = fieldValidation.matches(
               /^\d{10}$/,
               "Phone number must be exactly 10 digits"
             );
           }
+          if (type === "email") {
+            fieldValidation = fieldValidation.matches(
+              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+              "Please enter a valid email address"
+            );
+          }
+          
 
+          if (required) {
+            fieldValidation = fieldValidation.required(`${label} is required`);
+          }
           return [name, fieldValidation];
         })
       )
