@@ -35,7 +35,7 @@ const UserForm = ({ onSubmit, userId, initialValues = {} }) => {
           }
           if (type === "email") {
             fieldValidation = fieldValidation.matches(
-              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+              /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in|org)$/,
               "Please enter a valid email address"
             );
           }
